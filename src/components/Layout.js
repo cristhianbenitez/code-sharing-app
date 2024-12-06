@@ -13,8 +13,8 @@ export const Layout = ({ children }) => {
             <Image src="/NoteCodeLogo.svg" alt="NoteCode" width={32} height={32} className="w-full h-5" />
           </Link>
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-3">Create & Share</h1>
-            <h2 className="text-4xl font-bold opacity-90">Your Code easily</h2>
+            <h1 className="text-[2rem] font-bold mb-3">Create & Share</h1>
+            <h2 className="text-[2.5rem] font-bold opacity-90">Your Code easily</h2>
           </div>
         </header>
         <main>{children}</main>
