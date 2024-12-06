@@ -1,40 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# NoteCode - Code Sharing Application
+
+A modern, real-time code sharing application built with Next.js that allows developers to easily share and collaborate on code snippets.
+
+> 🤖 This project was primarily developed through prompting with [Cursor AI](https://cursor.sh/), demonstrating the power of AI-assisted development while maintaining high code quality and best practices.
+
+## Features
+
+- 🎨 Clean and modern UI with dark/light mode support
+- 📝 Real-time code editing with Monaco Editor
+- 🔄 Multiple programming language support
+- 🔗 Shareable session links
+- 🎯 Responsive design
+
+## Tech Stack
+
+- **Frontend:**
+  - Next.js
+  - React
+  - Monaco Editor
+  - TailwindCSS
+  - Geist Font
+
+- **Backend:**
+  - Next.js API Routes
+  - Prisma
+  - PostgreSQL
+
+- **Development Tools:**
+  - Cursor AI (Primary development assistant)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- PostgreSQL database
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/code-sharing-app.git
+cd code-sharing-app
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+   - Copy `.env.example` to `.env`
+   - Update the values in `.env` with your configuration
+
+```bash
+cp .env.example .env
+```
+
+4. Set up the database:
+
+```bash
+npx prisma migrate dev
+```
+
+5. Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Security Considerations
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Environment Variables
+- Never commit `.env` files to the repository
+- Use `.env.example` as a template for required variables
+- Keep sensitive credentials secure
+- Use strong database passwords in production
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Database
+- Use strong passwords
+- Limit database access to necessary IP addresses
+- Regularly backup your database
+- Keep Prisma and other dependencies updated
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Production Deployment
+- Use HTTPS in production
+- Set up proper CORS policies
+- Enable rate limiting for API routes
+- Keep all dependencies updated
+- Follow security best practices for your hosting platform
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+code-sharing-app/
+├── src/
+│   ├── components/      # React components
+│   ├── hooks/          # Custom React hooks
+│   ├── pages/          # Next.js pages
+│   ├── config/         # Configuration files
+│   └── styles/         # Global styles
+├── prisma/             # Database schema and migrations
+├── public/            # Static assets
+└── package.json       # Project dependencies
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Key Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `CodeEditor`: Main editor component using Monaco Editor
+- `EditorBottomBar`: Controls for language selection and sharing
+- `Layout`: Main layout component with theme support
+- `useEditor`: Hook for editor state management
+- `useTheme`: Hook for theme management
+- `useCollaboration`: Hook for real-time collaboration
 
-## Deploy on Vercel
+## Development Approach
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project showcases a modern development workflow that combines human expertise with AI assistance:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- **AI-Assisted Development**: Leveraged Cursor AI for code generation, optimization, and problem-solving
+- **Best Practices**: Maintained high code quality and modern development standards
+- **Iterative Development**: Used AI prompts to refine and improve code incrementally
+- **Clean Architecture**: Organized code structure and separation of concerns
+
+## Acknowledgments
+
+- [Cursor AI](https://cursor.sh/) - Primary development assistant
+- [Monaco Editor](https://microsoft.github.io/monaco-editor/)
+- [Next.js](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Prisma](https://www.prisma.io/)
+- [Geist Font](https://vercel.com/font)
+
+---
+
+![NoteCode Screenshot](public/screenshot.jpeg)
