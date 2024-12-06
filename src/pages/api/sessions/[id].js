@@ -1,17 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 
-// PrismaClient is attached to the `global` object in development to prevent
-// exhausting your database connection limit.
-const globalForPrisma = global;
-
-const prisma = globalForPrisma.prisma ||
-  new PrismaClient({
-    log: ['query', 'error', 'warn'],
-    errorFormat: 'pretty',
-  });
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
-
 export default async function handler(req, res) {
   const { id } = req.query;
 
@@ -23,25 +11,18 @@ export default async function handler(req, res) {
     });
   }
 
-  let client;
-  try {
-    client = prisma;
-
-    if (req.method === 'GET') {
-      // Test database connection first
-      try {
-        await client.$connect();
-      } catch (connectionError) {
-        console.error('Database connection error:', {
-          error: connectionError.message,
-          name: connectionError.name,
-          code: connectionError.code,
-          env: process.env.NODE_ENV
-        });
-        return res.status(500).json({ message: 'Database connection failed' });
+  // Create a new PrismaClient instance for this request
+  const prisma = new PrismaClient({
+    datasources: {
+      db: {
+        url: process.env.POSTGRES_URL_NON_POOLING
       }
+    }
+  });
 
-      const session = await client.codeSession.findUnique({
+  try {
+    if (req.method === 'GET') {
+      const session = await prisma.codeSession.findUnique({
         where: { id }
       });
 
@@ -60,7 +41,7 @@ export default async function handler(req, res) {
         });
       }
 
-      const session = await client.codeSession.update({
+      const session = await prisma.codeSession.update({
         where: { id },
         data: { code, language }
       });
@@ -72,10 +53,8 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Error handling session:', {
       error: error.message,
-      stack: error.stack,
       name: error.name,
-      env: process.env.NODE_ENV,
-      prismaError: error?.code,
+      code: error?.code,
       timestamp: new Date().toISOString()
     });
 
@@ -88,13 +67,7 @@ export default async function handler(req, res) {
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   } finally {
-    // Only disconnect in development
-    if (process.env.NODE_ENV !== 'production' && client) {
-      try {
-        await client.$disconnect();
-      } catch (disconnectError) {
-        console.error('Error disconnecting from database:', disconnectError);
-      }
-    }
+    // Always disconnect the client
+    await prisma.$disconnect();
   }
 }

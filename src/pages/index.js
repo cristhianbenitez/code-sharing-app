@@ -12,12 +12,15 @@ export default function Home() {
   const { code, language, hasChanges, handleEditorDidMount, handleEditorChange, setLanguage } = useEditor();
 
   const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleShare = async () => {
     if (!hasChanges) return;
 
     try {
       setIsSaving(true);
+      setError(null);
+
       const response = await fetch('/api/sessions/create', {
         method: 'POST',
         headers: {
@@ -26,11 +29,21 @@ export default function Home() {
         body: JSON.stringify({ code, language })
       });
 
-      const { sessionId } = await response.json();
-      router.push(`/session/${sessionId}`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to create session');
+      }
+
+      if (!data.sessionId) {
+        throw new Error('No session ID returned from server');
+      }
+
+      console.log('Session created:', data);
+      router.push(`/session/${data.sessionId}`);
     } catch (error) {
       console.error('Error creating session:', error);
-      alert(MESSAGES.SHARE_ERROR);
+      setError(error.message || MESSAGES.SHARE_ERROR);
     } finally {
       setIsSaving(false);
     }
@@ -38,6 +51,11 @@ export default function Home() {
 
   return (
     <Layout>
+      {error && (
+        <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md">
+          {error}
+        </div>
+      )}
       <CodeEditor
         code={code}
         language={language}
