@@ -5,7 +5,7 @@ export const EDITOR_CONFIG = {
   OPTIONS: {
     minimap: { enabled: false },
     fontSize: 14,
-    fontFamily: 'var(--font-geist-mono)',
+    fontFamily: 'Outfit',
     padding: { top: 16 },
     lineHeight: 1.6
   }

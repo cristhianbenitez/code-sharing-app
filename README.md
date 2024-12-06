@@ -19,7 +19,7 @@ A modern, real-time code sharing application built with Next.js that allows deve
   - React
   - Monaco Editor
   - TailwindCSS
-  - Geist Font
+  - Outfit Font
 
 - **Backend:**
   - Next.js API Routes
@@ -139,7 +139,7 @@ This project showcases a modern development workflow that combines human experti
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Prisma](https://www.prisma.io/)
-- [Geist Font](https://vercel.com/font)
+- [Outfit Font](https://fonts.google.com/specimen/Outfit)
 
 ---
 

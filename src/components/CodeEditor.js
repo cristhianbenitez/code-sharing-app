@@ -14,7 +14,7 @@ export const CodeEditor = ({
   isSaving = false,
   isShareDisabled = false,
   shareButtonTooltip,
-  currentTheme = THEMES.DARK.id,
+  currentTheme = THEMES.LIGHT.id,
   onThemeChange
 }) => {
   const [editorTheme, setEditorTheme] = useState(currentTheme === 'light' ? 'vs' : 'vs-dark');
@@ -25,9 +25,11 @@ export const CodeEditor = ({
   }, [currentTheme]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden
-      max-w-[880px] mx-auto flex flex-col h-[calc(100vh-280px)]
-      border border-gray-200 dark:border-gray-700 transition-colors duration-200">
+    <div
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden
+      max-w-[880px] mx-auto flex flex-col h-[720px]
+      border border-gray-200 dark:border-gray-700 transition-colors duration-200"
+    >
       <div className="flex-grow overflow-hidden">
         <Editor
           height="100%"

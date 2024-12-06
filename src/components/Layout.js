@@ -1,27 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import localFont from 'next/font/local';
-
-const geistSans = localFont({
-  src: '../pages/fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900'
-});
-
-const geistMono = localFont({
-  src: '../pages/fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900'
-});
 
 export const Layout = ({ children }) => {
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} min-h-screen
-        font-[family-name:var(--font-geist-sans)] overflow-hidden max-w-screen-xl mx-auto
-        text-gray-900`}
-    >
-      <div className="absolute top-0 left-0 w-full object-contain xl:top-[-200px]">
+    <div className="min-h-screen font-outfit overflow-hidden max-w-screen-xl mx-auto text-gray-900">
+      <div className="absolute top-0 left-0 w-full object-contain ">
         <img src="/hero-background.png" alt="" className="w-full h-full" />
       </div>
       <div className="max-w-6xl mx-auto px-4 py-10 z-10 relative">

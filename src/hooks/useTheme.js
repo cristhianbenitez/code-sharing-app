@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { THEMES } from '../config/constants';
 
 export const useTheme = () => {
-  const [currentTheme, setCurrentTheme] = useState(THEMES.DARK.id);
+  const [currentTheme, setCurrentTheme] = useState(THEMES.LIGHT.id);
 
   // Load theme on mount
   useEffect(() => {
@@ -31,4 +31,3 @@ export const useTheme = () => {
     isDark: currentTheme === 'dark'
   };
 };
-

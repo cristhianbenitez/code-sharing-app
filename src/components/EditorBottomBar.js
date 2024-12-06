@@ -181,11 +181,7 @@ export const EditorBottomBar = ({
   onThemeChange
 }) => {
   return (
-    <div
-      className="relative flex items-center justify-between p-4
-        border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1E1E1E]
-        transition-colors duration-200"
-    >
+    <div className="relative flex items-center justify-between p-4 bg-white dark:bg-[#1E1E1E] transition-colors duration-200">
       <div className="flex items-center space-x-2">
         <LanguageSelector language={language} setLanguage={setLanguage} />
         <ThemeSelector currentTheme={currentTheme} onThemeChange={onThemeChange} />

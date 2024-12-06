@@ -10,6 +10,9 @@ module.exports = {
     extend: {
       height: {
         editor: 'calc(100vh - 280px)'
+      },
+      fontFamily: {
+        outfit: ['Outfit', 'sans-serif']
       }
     }
   },
