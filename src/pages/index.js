@@ -9,14 +9,7 @@ import { MESSAGES } from '../config/constants';
 export default function Home() {
   const router = useRouter();
   const { currentTheme, setTheme } = useTheme();
-  const {
-    code,
-    language,
-    hasChanges,
-    handleEditorDidMount,
-    handleEditorChange,
-    setLanguage
-  } = useEditor();
+  const { code, language, hasChanges, handleEditorDidMount, handleEditorChange, setLanguage } = useEditor();
 
   const [isSaving, setIsSaving] = useState(false);
 
