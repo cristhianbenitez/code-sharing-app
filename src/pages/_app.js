@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Component {...pageProps} />
-      <Analytics />
+      {process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' && <Analytics />}
     </>
   );
 }
